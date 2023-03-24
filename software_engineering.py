@@ -7,14 +7,22 @@ def menu():
 
 
 def encode(password):
-    integers = [int(integer) for integer in password]
-    encoded_integer = [(integer + 3) % 10 for integer in integers]
-    encoded_password = "".join(str(integer) for integer in encoded_integer)
-    return encoded_password
+    integers = []
+    for character in password:
+        integers.append(int(character))
+    encoded = []
+    for integer in integers:
+        encoded.append(integer + 3)
+    return encoded
 
+def decode(encode):
+    decoded_password = ""
+    for number in encode:
+        decoded_password += str((number - 3))
+    return decoded_password
 
-n = 1
 if __name__ == '__main__':
+    n = 1
     while n == 1:
         menu()
         option = input('Please enter an option: ')
@@ -22,7 +30,10 @@ if __name__ == '__main__':
             password = input('Please enter your password to encode: ')
             encoded_password = encode(password)
             print('Your password has been encoded and stored!')
+            print()
         elif option == '2':
+            decoded_password = decode(encoded_password)
+            print(decoded_password)
             pass
         if option == '3':
             n = 2
